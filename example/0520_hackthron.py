@@ -5,8 +5,9 @@ from selenium import webdriver
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
+import config
 
-open_data = requests.get("https://opendata.cwb.gov.tw/fileapi/v1/opendataapi/W-C0034-005?Authorization=CWB-86FA25D2-B897-4E25-8EE5-DF6843F45127&downloadType=WEB&format=XML")
+open_data = requests.get(config.open_data_url)
 print(open_data)
 soup = BeautifulSoup(open_data.text, features="html.parser")
 print(soup)
@@ -36,7 +37,7 @@ chrome_options = Options()
 chrome_options.add_argument('--no-sandbox')
 # chrome_options.add_argument("--headless")
 chrome = webdriver.Chrome('C:/chromedriver_win32/chromedriver.exe', chrome_options=chrome_options)
-chrome.get("http://52.36.209.62:3838/typhoon_td/")
+chrome.get(config.goal_url)
 
 time.sleep(8)
 chrome.set_window_size(1296, 729)
